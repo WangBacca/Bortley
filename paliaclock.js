@@ -23,7 +23,7 @@ function getCurrentTime() {
         currentDayPeriod = "Day";
     } else if (paliaHour >= 18 && paliaHour < 21) {
         currentDayPeriod = "Evening";
-    } else if (paliaHour >= 21 && paliaHour < 3) {
+    } else if (paliaHour >= 21 || paliaHour < 3) {
         currentDayPeriod = "Night";
     }
 
