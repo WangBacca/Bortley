@@ -3,14 +3,19 @@ body {
     color: #a4b3ce
 }
 
+.MenuTab {
+    padding: 10px;
+    border: 2px groove #949693;
+}
+
 .PaliaClock_Container {
     position: fixed;
     right: 0px;
     top: 0px;
     width: 200px;
-    border: 3px solid #949693;
+    border: 3px groove #949693;
     padding: 10px;
-    
+    background-color: #2f374b;
 }
 
 .PaliaClockImage_Container {
@@ -35,6 +40,14 @@ body {
     margin: auto;
     display: block;
     z-index: 3;
+}
+
+.PaliaClock_SunMoon {
+    position: absolute;
+    transform: translate(76.5px, 76.5px);
+    margin: auto;
+    display: block;
+    z-index: 4;
 }
 
 .PaliaTime {

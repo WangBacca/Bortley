@@ -1,5 +1,6 @@
 var paliaTimeDiv = document.getElementsByClassName("PaliaTime")[0];
 var paliaDayPeriodDiv = document.getElementsByClassName("PaliaDayPeriod")[0];
+var paliaSunMoonImg = document.getElementsByClassName("PaliaClock_SunMoon")[0];
 var currentDayPeriod = "Night";
 const dayPeriodChanged = new Event("dayPeriodChanged");
 
@@ -19,12 +20,16 @@ function getCurrentTime() {
     //Figure out which day period we're in
     if (paliaHour >= 3 && paliaHour < 6) {
         currentDayPeriod = "Morning";
+        paliaSunMoonImg.src = "resources/PaliaClock/Sun.png";
     } else if (paliaHour >= 6 && paliaHour < 18) {
         currentDayPeriod = "Day";
+        paliaSunMoonImg.src = "resources/PaliaClock/Sun.png";
     } else if (paliaHour >= 18 && paliaHour < 21) {
         currentDayPeriod = "Evening";
+        paliaSunMoonImg.src = "resources/PaliaClock/Moon.png";
     } else if (paliaHour >= 21 || paliaHour < 3) {
         currentDayPeriod = "Night";
+        paliaSunMoonImg.src = "resources/PaliaClock/Moon.png";
     }
 
     //Dispatch the day period changed at the appropriate hours
@@ -34,7 +39,7 @@ function getCurrentTime() {
     }
 
     //Keep it in 12 hour time instead of 24h (this changes currentPaliaHour, be careful of further uses of that variable)
-    if (currentPaliaHour > 12) {
+    if (paliaHour > 12) {
         currentPaliaHour = currentPaliaHour - 12
         paliaAMPMValue = "PM";
     } else if (currentPaliaHour == 0) {
