@@ -1,4 +1,40 @@
 const rugIconPath = "/Bortley/resources/RugIcons";
+var manualRugNamesArray = [
+    "Bellflower_Rug.png",
+    "Bellflower_Runner.png",
+    "Bellflower_Small_Rug.png",
+    "Capital_Chic_Doormat.png",
+    "Capital_Chic_Rug.png",
+    "Capital_Chic_Stylish_Rug.png",
+    "Dragontide_Large_Rug.png",
+    "Dragontide_Round_Rug.png",
+    "Dragontide_Runner.png",
+    "Homestead_Large_Rug.png",
+    "Homestead_Medium_Rug.png",
+    "Homestead_Runner.png",
+    "Homestead_Triangular_Rug.png",
+    "Industrial_Rug.png",
+    "Industrial_Runner.png",
+    "Industrial_Small_Rug.png",
+    "Kilima_Inn_Large_Rug.png",
+    "Kilima_Inn_Round_Rug.png",
+    "Kilima_Inn_Runner.png",
+    "Log_Cabin_Haabeko_Rug.png",
+    "Log_Cabin_Patterned_Rug.png",
+    "Makeshift_Chapaa_Hide_Rug.png",
+    "Makeshift_Rectangular_Rug.png",
+    "Makeshift_Sernuk_Hide_Rug.png",
+    "Makeshift_Square_Rug.png",
+    "Moonstruck_Rug.png",
+    "Moonstruck_Runner.png",
+    "Moonstruck_Small_Rug.png",
+    "Ranch_House_99-Acre_Rug.png",
+    "Ranch_House_Doormat.png",
+    "Ranch_House_Rug.png",
+    "Ravenwood_Doormat.png",
+    "Ravenwood_Runner.png"
+];
+
 var rugGallery = document.createElement("div");
 rugGallery.className = "Gallery_Rugs"
 rugGallery.style.display = "grid";
@@ -11,19 +47,9 @@ rugGallery.style.columnGap = "2px";
 
 document.body.appendChild(rugGallery);
 
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.open("GET", `${rugIconPath}`, true);
-xmlhttp.setRequestHeader('Accept', 'application/json');
-xmlhttp.send();
-
-xmlhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) { 
-        let responseJSON = JSON.parse(this.response);
-        // console.log(responseJSON);
-        //do stuff here
-
-        for (let i = 0; i < responseJSON.length; i++) {
-            let rugFileName = responseJSON[i];
+function buildRugGallery(arrayOfFileNames) {
+    for (let i = 0; i < arrayOfFileNames.length; i++) {
+            let rugFileName = arrayOfFileNames[i];
             let rugNameWithUnderscores = rugFileName.slice(0, rugFileName.length - 4);
             let rugNameArray = rugNameWithUnderscores.split("_");
             let rugName = rugNameArray.join(" ");
@@ -76,5 +102,20 @@ xmlhttp.onreadystatechange = function () {
             wikiLinkItem.appendChild(imageElement);
             galleryItem.appendChild(checkBox);
         }
+}
+
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.open("GET", `${rugIconPath}`, true);
+xmlhttp.setRequestHeader('Accept', 'application/json');
+xmlhttp.send();
+
+xmlhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) { 
+        let responseJSON = JSON.parse(this.response);
+        // console.log(responseJSON);
+        //do stuff here
+        buildRugGallery(responseJSON);
+    } else if (this.status == 404) {
+        buildRugGallery(manualRugNamesArray);
     }
 }
