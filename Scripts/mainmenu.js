@@ -3,7 +3,6 @@ var mainStyle = document.createElement("style");
 var mainPageIFrame = document.getElementsByClassName("MainPage_iframe")[0];
 var splitURL = window.location.href.split("/");
 var mainPath = "/Pages/"
-console.log(splitURL);
 
 if (splitURL[2] == "wangbacca.github.io") {
     mainPath = "/Bortley/Pages/";
