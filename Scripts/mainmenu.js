@@ -1,6 +1,13 @@
 var menuButtons = document.getElementsByClassName("MenuButton");
 var mainStyle = document.createElement("style");
 var mainPageIFrame = document.getElementsByClassName("MainPage_iframe")[0];
+var splitURL = window.location.href.split("/");
+var mainPath = "/Pages/"
+console.log(splitURL);
+
+if (splitURL[2] == "wangbacca.github.io") {
+    mainPath = "/Bortley/Pages/";
+}
 
 //Pull the CSS rules for the main page so I can push them to new pages
 let cssFileRequest = new XMLHttpRequest();
@@ -17,7 +24,7 @@ for (let i = 0; i < menuButtons.length; i++) {
     menuButtons[i].onclick = function () {
         var buttonText = this.innerText;
         var pageName = buttonText.toLowerCase();
-        mainPageIFrame.src = `/Pages/${pageName}.html`
+        mainPageIFrame.src = `${mainPath}${pageName}.html`
     }
 }
 
