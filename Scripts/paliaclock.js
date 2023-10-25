@@ -39,13 +39,15 @@ function getCurrentTime() {
     }
 
     //Keep it in 12 hour time instead of 24h (this changes currentPaliaHour, be careful of further uses of that variable)
-    if (paliaHour > 12) {
+    if (paliaHour > 13) {
         currentPaliaHour = currentPaliaHour - 12
+        paliaAMPMValue = "PM";
+    } else if (paliaHour >= 12 && paliaHour < 13) {
         paliaAMPMValue = "PM";
     } else if (currentPaliaHour == 0) {
         currentPaliaHour = 12;
         paliaAMPMValue = "AM";
-    } else {
+    } else if (paliaHour < 12) {
         paliaAMPMValue = "AM";
     }
 
