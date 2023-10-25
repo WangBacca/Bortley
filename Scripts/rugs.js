@@ -1,4 +1,4 @@
-const rugIconPath = "/resources/RugChecklist/RugIcons";
+const rugIconPath = "/Bortley/resources/RugChecklist/RugIcons";
 var rugGallery = document.createElement("div");
 rugGallery.className = "Gallery_Rugs"
 rugGallery.style.display = "grid";
