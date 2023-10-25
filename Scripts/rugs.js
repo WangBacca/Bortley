@@ -115,7 +115,7 @@ xmlhttp.onreadystatechange = function () {
         // console.log(responseJSON);
         //do stuff here
         buildRugGallery(responseJSON);
-    } else if (this.status == 404) {
+    } else if (this.readyState == 4 && this.status == 404) {
         buildRugGallery(manualRugNamesArray);
     }
 }
